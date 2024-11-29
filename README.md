@@ -1,21 +1,21 @@
-# SCM - Student Course Management System  
+# SCM - Smart Contact Manager  
 
-SCM (Student Course Management) is a web-based application designed to simplify academic information management in educational institutions. This project provides features for managing students, courses, and administrative tasks efficiently. Built using **Spring Boot** and **Thymeleaf**, it combines a robust backend with a responsive frontend.
+SCM (Smart Contact Manager) is a web-based application designed to manage personal and professional contacts effectively. Built with **Spring Boot** and **Thymeleaf**, it provides users with a secure, role-based platform for storing, organizing, and retrieving contact details.
 
 ---
 
 ## ✨ Features  
 
-- **Student Management**:  
-  Add, update, delete, and view student details.  
-- **Course Management**:  
-  Create and manage courses, assign them to students.  
-- **Role-Based Access Control**:  
-  Secure authentication and authorization for administrators and students.  
+- **Contact Management**:  
+  Add, update, delete, and view contact details.  
+- **User Authentication**:  
+  Secure login and role-based access control for users.  
+- **User-Specific Data**:  
+  Each user can manage their own contact list privately.  
 - **Dynamic Frontend**:  
   Responsive UI built with Thymeleaf templates and Bootstrap.  
 - **RESTful API Support**:  
-  APIs for integrating external systems and automating workflows.  
+  Easily integrate the contact manager with external systems.  
 
 ---
 
@@ -90,30 +90,6 @@ SCM/
 └── README.md                    # Documentation
 ```
 
----
-
-## 🎥 Video Tutorial Series  
-
-This project is inspired by the **SCM 2.0** tutorial series from **Learn Code With Durgesh**, which provides step-by-step instructions for building this application.  
-
-### Topics Covered:  
-1. **Spring Boot Basics**  
-   Setting up Spring Boot and project dependencies.  
-2. **Database Integration**  
-   Using MySQL and Hibernate ORM.  
-3. **API Development**  
-   Building RESTful APIs for CRUD operations.  
-4. **Frontend Development**  
-   Integrating Thymeleaf and Bootstrap.  
-5. **Authentication & Authorization**  
-   Securing the application with role-based access.  
-6. **Deployment**  
-   Packaging and deploying the application for production.  
-
-
- 
-
----
 
 ## 🤝 Contributing  
 
@@ -149,3 +125,5 @@ Contributions are welcome! To contribute:
 For questions or feedback, feel free to:  
 - Open a GitHub issue: [Report Issue](https://github.com/utkarshpr/SCM/issues)  
 - Connect via the repository: [SCM GitHub](https://github.com/utkarshpr/SCM)  
+
+---  
