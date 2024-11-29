@@ -110,14 +110,8 @@ This project is inspired by the **SCM 2.0** tutorial series from **Learn Code Wi
 6. **Deployment**  
    Packaging and deploying the application for production.  
 
-### Watch the Playlist:  
-[**Spring Boot SCM 2.0 Complete Project**](https://www.youtube.com/playlist?list=PL0zysOflRCemNS641tpw66bcaFylyIGsA)  
 
----
-
-## 📜 License  
-
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.  
+ 
 
 ---
 
