@@ -30,6 +30,7 @@
             class="mt-2"
             method="post"
             data-th-object="${userForm}"
+            novalidate
             >
               <!-- name -->
               <div class="mb-5">
@@ -46,6 +47,13 @@
                   placeholder="Enter the name"
                   required
                 />
+                <p
+                  data-th-if="${#fields.hasErrors('name')}"
+                  data-th-errors="*{name}"
+                  class="text-red-600 px-1 py-2"
+                >
+                  Name is required
+                </p>
               </div>
               <!-- email -->
               <div class="mb-5">
@@ -62,6 +70,11 @@
                   placeholder="Enter the Email"
                   required
                 />
+                <p
+                data-th-if="${#fields.hasErrors('email')}"
+                data-th-errors="*{email}"
+                class="text-red-600 px-1 py-2"
+              > email in proper format is required</p>
               </div>
               <!-- phone number -->
               <div class="mb-5">
@@ -80,6 +93,11 @@
                   minlength="10"
                   required
                 />
+                <p
+                data-th-if="${#fields.hasErrors('phoneNumber')}"
+                data-th-errors="*{phoneNumber}"
+                class="text-red-600 px-1 py-2"
+              >Phone number is require</p>
               </div>
               <!-- password -->
               <div class="mb-5">
@@ -96,6 +114,11 @@
                   placeholder="Enter the password"
                   required
                 />
+                <p
+                data-th-if="${#fields.hasErrors('password')}"
+                data-th-errors="*{password}"
+                class="text-red-600 px-1 py-2"
+              >Password is require</p>
               </div>
 
               <!-- about -->
@@ -113,6 +136,11 @@
                   placeholder="Enter the About"
                   required
                 ></textarea>
+                <p
+                  data-th-if="${#fields.hasErrors('about')}"
+                  data-th-errors="*{about}"
+                  class="text-red-600 px-1 py-2"
+                ></p>
               </div>
               <!-- buttons -->
               <div class="mb-2">
