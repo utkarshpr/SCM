@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.scm.entities.User;
@@ -15,24 +16,31 @@ import com.scm.repo.UserRepo;
 import com.scm.services.UserService;
 
 @Service
-public class UserServiceImpl  implements UserService{
+public class UserServiceImpl implements UserService {
 
-     @Autowired
+    @Autowired
     private UserRepo userRepo;
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    
     @Override
     public User saveUser(User user) {
-        // user id : have to generate
-        String userId = UUID.randomUUID().toString();
-        user.setUserId(userId);
-        // password encode
-        // user.setPassword(userId);
-        logger.info(user.getProvider().toString());
+        try {
+            // user id : have to generate
+            String userId = UUID.randomUUID().toString();
+            user.setUserId(userId);
+            // password encode
+            // user.setPassword(userId);
+            logger.info(user.getProvider().toString());
 
-        return userRepo.save(user);
+            return userRepo.save(user);
+        } catch (DataIntegrityViolationException ex) {
+            // Log the error
+            logger.error("Unique constraint violation: {}", ex.getMessage());
+
+            // Throw a custom exception or handle gracefully
+            throw new ResourceNotFoundException("A user with this email or ID already exists.");
+        }
 
     }
 
@@ -45,7 +53,7 @@ public class UserServiceImpl  implements UserService{
     public Optional<User> updateUser(User user) {
 
         User user2 = userRepo.findById(user.getUserId())
-                .orElseThrow(()-> new ResourceNotFoundException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         // update karenge user2 from user
         user2.setName(user.getName());
         user2.setEmail(user.getEmail());
@@ -88,6 +96,5 @@ public class UserServiceImpl  implements UserService{
     public List<User> getAllUsers() {
         return userRepo.findAll();
     }
-
 
 }

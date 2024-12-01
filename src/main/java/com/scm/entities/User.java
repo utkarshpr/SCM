@@ -42,7 +42,7 @@ public class User {
     private boolean phoneVerified=false;
 
     //
-   @Enumerated
+   @Enumerated(value=EnumType.STRING)
     private Providers provider = Providers.SELF;
     private String providerUserId;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
