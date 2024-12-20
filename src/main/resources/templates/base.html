@@ -30,9 +30,14 @@ class="light"
   <body class=" h-screen w-full dark:bg-gray-900 bg-gray-200 dark:text-white">
     <!-- commona header -->
 
-   <div data-th-replace="navbar :: navbar">
-
-   </div>
+    <!--  user is logged in : navbar -->
+    <div th:if="${user}">
+      <div data-th-replace="~{user/user_navbar::user-navbar}"></div>
+    </div>
+    <!-- user is not logged : navbar -->
+    <div th:unless="${user}">
+      <div data-th-replace="~{navbar :: navbar}"></div>
+    </div>
 
     <!-- main content -->
     <div class="p-4">
