@@ -66,8 +66,7 @@ public class ContactController {
         contact.setUser(user);
         contact.setLinkedInLink(contactForm.getLinkedInLink());
         contact.setWebsiteLink(contactForm.getWebsiteLink());
-       // contactService.save(contact);
-       System.out.println(".................................................");
+        contactService.save(contact);
         System.out.println(contactForm.toString());
         // 3 set the contact picture url
         // 4 `set message to be displayed on the view
@@ -78,6 +77,5 @@ public class ContactController {
                         .build());
         return "redirect:/user/contacts/add";
     }
-
 
 }
