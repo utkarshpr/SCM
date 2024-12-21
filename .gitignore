@@ -36,3 +36,5 @@ mysql_data/
 keyfile.txt
 
 application.properties
+
+.env
