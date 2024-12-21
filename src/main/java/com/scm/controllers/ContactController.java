@@ -1,5 +1,6 @@
 package com.scm.controllers;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import com.scm.helpers.Helper;
 import com.scm.helpers.Message;
 import com.scm.helpers.MessageType;
 import com.scm.services.ContactService;
+import com.scm.services.ImageService;
 import com.scm.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -29,6 +31,11 @@ public class ContactController {
     private ContactService contactService;
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ImageService imageService;
+
+     private Logger logger = org.slf4j.LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/add")
     // add contact page: handler
@@ -46,6 +53,7 @@ public class ContactController {
         // 1 validate form
         // TODO: add validation logic here
         if (result.hasErrors()) {
+            result.getAllErrors().forEach(errors->logger.info(errors.toString()));
             session.setAttribute("message", Message.builder()
                     .content("Please correct the following errors")
                     .type(MessageType.red)
@@ -55,6 +63,9 @@ public class ContactController {
         String username = Helper.getEmailOfLoggedInUser(authentication);
         // form ---> contact
         User user = userService.getUserByEmail(username);
+
+        String fileURL=imageService.uploadImage(contactForm.getContactImagFile());
+
         // 2 process the contact picture
         Contact contact = new Contact();
         contact.setName(contactForm.getName());
@@ -64,9 +75,10 @@ public class ContactController {
         contact.setAddress(contactForm.getAddress());
         contact.setDescription(contactForm.getDescription());
         contact.setUser(user);
+        contact.setPicture(fileURL);
         contact.setLinkedInLink(contactForm.getLinkedInLink());
         contact.setWebsiteLink(contactForm.getWebsiteLink());
-        contactService.save(contact);
+       // contactService.save(contact);
         System.out.println(contactForm.toString());
         // 3 set the contact picture url
         // 4 `set message to be displayed on the view
