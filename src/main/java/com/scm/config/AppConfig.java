@@ -24,9 +24,9 @@ private String api_secret;
 
         return new Cloudinary(
             ObjectUtils.asMap(
-                "cloud_name","dwvm1sgsc",
-                "api_key","173469291366848",
-                "api_secret","tyNU2Gab4uM79w3mxdv26vWtBL4"
+                "cloud_name",cloud_name,
+                "api_key",api_key,
+                "api_secret",api_secret
             )
         );
     }

@@ -1,5 +1,7 @@
 package com.scm.controllers;
 
+import java.util.UUID;
+
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,7 +66,8 @@ public class ContactController {
         // form ---> contact
         User user = userService.getUserByEmail(username);
 
-        //String fileURL=imageService.uploadImage(contactForm.getContactImagFile());
+         String filename=UUID.randomUUID().toString();
+        String fileURL=imageService.uploadImage(contactForm.getContactImagFile(),filename);
 
         // 2 process the contact picture
         Contact contact = new Contact();
@@ -75,10 +78,11 @@ public class ContactController {
         contact.setAddress(contactForm.getAddress());
         contact.setDescription(contactForm.getDescription());
         contact.setUser(user);
-      //  contact.setPicture(fileURL);
+        contact.setPicture(fileURL);
+        contact.setCloudinaryImagePublicId(filename);
         contact.setLinkedInLink(contactForm.getLinkedInLink());
         contact.setWebsiteLink(contactForm.getWebsiteLink());
-       // contactService.save(contact);
+        contactService.save(contact);
         System.out.println(contactForm.toString());
         // 3 set the contact picture url
         // 4 `set message to be displayed on the view
