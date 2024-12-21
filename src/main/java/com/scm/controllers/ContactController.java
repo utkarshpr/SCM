@@ -64,7 +64,7 @@ public class ContactController {
         // form ---> contact
         User user = userService.getUserByEmail(username);
 
-        String fileURL=imageService.uploadImage(contactForm.getContactImagFile());
+        //String fileURL=imageService.uploadImage(contactForm.getContactImagFile());
 
         // 2 process the contact picture
         Contact contact = new Contact();
@@ -75,7 +75,7 @@ public class ContactController {
         contact.setAddress(contactForm.getAddress());
         contact.setDescription(contactForm.getDescription());
         contact.setUser(user);
-        contact.setPicture(fileURL);
+      //  contact.setPicture(fileURL);
         contact.setLinkedInLink(contactForm.getLinkedInLink());
         contact.setWebsiteLink(contactForm.getWebsiteLink());
        // contactService.save(contact);

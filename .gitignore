@@ -34,3 +34,5 @@ build/
 
 mysql_data/
 keyfile.txt
+
+application.properties
