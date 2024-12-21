@@ -7,14 +7,13 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.scm.entities.User;
-import com.scm.helper.AppConstants;
-import com.scm.helper.ResourceNotFoundException;
-import com.scm.repo.UserRepo;
+import com.scm.helpers.AppConstants;
+import com.scm.helpers.ResourceNotFoundException;
+import com.scm.repsitories.UserRepo;
 import com.scm.services.UserService;
 
 @Service
@@ -30,26 +29,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User saveUser(User user) {
-        try {
-            // user id : have to generate
-            String userId = UUID.randomUUID().toString();
-            user.setUserId(userId);
-            // password encode
-            // user.setPassword(userId);
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            // set the user role
+        // user id : have to generate
+        String userId = UUID.randomUUID().toString();
+        user.setUserId(userId);
+        // password encode
+        // user.setPassword(userId);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        // set the user role
 
         user.setRoleList(List.of(AppConstants.ROLE_USER));
-            logger.info(user.getProvider().toString());
 
-            return userRepo.save(user);
-        } catch (DataIntegrityViolationException ex) {
-            // Log the error
-            logger.error("Unique constraint violation: {}", ex.getMessage());
+        logger.info(user.getProvider().toString());
 
-            // Throw a custom exception or handle gracefully
-            throw new ResourceNotFoundException("A user with this email or ID already exists.");
-        }
+        return userRepo.save(user);
 
     }
 
@@ -109,6 +102,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByEmail(String email) {
         return userRepo.findByEmail(email).orElse(null);
+
     }
 
 }

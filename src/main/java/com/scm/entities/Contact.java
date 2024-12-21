@@ -1,8 +1,6 @@
 package com.scm.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,24 +16,28 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Contact {
+
     @Id
-    private String contactId;
-    private String email;
+    private String id;
     private String name;
+    private String email;
     private String phoneNumber;
-    private String picture;
     private String address;
+    private String picture;
     @Column(length = 1000)
     private String description;
-    private boolean fav=false;
+    private boolean favorite = false;
+    private String websiteLink;
+    private String linkedInLink;
+    // private List<String> socialLinks=new ArrayList<>();
 
-    //private List<SocialLink> socialLinks=new ArrayList<>()
     @ManyToOne
     private User user;
 
-     @OneToMany(mappedBy = "contact",cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)
-    private List<SocialLink> links=new ArrayList<>();
+    @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<SocialLink> links = new ArrayList<>();
+
 }

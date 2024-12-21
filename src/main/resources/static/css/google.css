@@ -35,3 +35,11 @@
   .back{
     background-color: black;
   }
+
+  .sidebar-container {
+    z-index: 10;
+  }
+  .content-container {
+    z-index: 20;
+    position: relative;
+  }

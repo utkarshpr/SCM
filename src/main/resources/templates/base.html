@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html
-class="light"
+  class="light"
   lang="en"
   th:fragment="parent(content,title,script)"
   xmlns:th="http://www.thymeleaf.org"
@@ -9,14 +9,14 @@ class="light"
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title data-th-replace="${title}">SCM</title>
+
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
-    
       rel="stylesheet"
     />
     <link rel="stylesheet" data-th-href="@{'/css/output.css'}" />
-    <link rel="stylesheet" data-th-href="@{'/css/google.css'}" />
-   
+    <link rel="stylesheet" data-th-href="@{'/css/style.css'}" />
+
     <!-- font awesome -->
     <link
       rel="stylesheet"
@@ -25,17 +25,17 @@ class="light"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
   </head>
-  <body class=" h-screen w-full dark:bg-gray-900 bg-gray-200 dark:text-white">
+  <body class="dark:bg-gray-900 bg-gray-100 dark:text-white">
     <!-- commona header -->
 
     <!--  user is logged in : navbar -->
-    <div th:if="${user}">
+    <div th:if="${loggedInUser}">
       <div data-th-replace="~{user/user_navbar::user-navbar}"></div>
     </div>
+
     <!-- user is not logged : navbar -->
-    <div th:unless="${user}">
+    <div th:unless="${loggedInUser}">
       <div data-th-replace="~{navbar :: navbar}"></div>
     </div>
 
@@ -49,7 +49,7 @@ class="light"
     <!-- <footer class="p-4">Footer: Learn Code With Durgesh</footer> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-    <script data-th-src="@{'js/script.js'}"></script>
+    <script data-th-src="@{'/js/script.js'}"></script>
     <th:block data-th-replace="${script}"></th:block>
   </body>
 </html>
